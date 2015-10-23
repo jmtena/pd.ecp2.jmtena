@@ -43,29 +43,48 @@ public class VotingPresenter {
 	}
 	
 	public TransferVote calculateAverage(){
-		List<Theme> themes = new BusinessControllerTheme().receiveThemes();
 		List<Vote> averageVotes = new ArrayList<Vote>();
-			
+
+		TransferVote transferVote = new BusinessControllerVote().receiveVotes();
+		List<Vote> votes = transferVote.getVotes();
+		List<String> temas = new ArrayList<String>();
+		
+		for(Vote vote : votes){
+			String theme = vote.getTheme().getName();
+			if (!contains(temas, theme))
+				temas.add(theme);
+		}
+		
 		int i=0;
-		for(Theme theme : themes){
-			int average = 0;
+		for(String theme : temas){
+			double average = 0;
 			int numVotes = 0;
 			
-			TransferVote transferVote = new BusinessControllerVote().receiveVotesByTheme(theme);
-			List<Vote> votes = transferVote.getVotes();
-			
 			for(Vote vote: votes){
-				if (vote.getTheme().equals(theme)){
+				if (vote.getTheme().getName().equalsIgnoreCase(theme)){
 					average += vote.getVote();
 					numVotes++;
 				}
 			}
 			if (numVotes != 0)
-				average = average / numVotes;
-			Vote vote = new Vote(i,average,theme);
+				average = (double)average / numVotes;
+			Vote vote = new Vote(i,average,new Theme(i,theme));
 			averageVotes.add(vote);
 			i++;
 		}
 		return new TransferVote(averageVotes);
+	}
+	
+	private boolean contains(List<String> list, String str){
+		boolean contain = false;
+		
+		for(String s : list){
+			if (s.equalsIgnoreCase(str)){
+				contain = true;
+				break;
+			}
+		}
+		
+		return contain;
 	}
 }

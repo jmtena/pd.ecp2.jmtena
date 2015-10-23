@@ -3,14 +3,14 @@ public class Vote {
 
     private int id;
 
-    private int vote;
+    private double vote;
 
     private Theme theme;
 
     public Vote() {
     }
 
-    public Vote(int id, int vote, Theme theme) {
+    public Vote(int id, double vote, Theme theme) {
         this.id = id;
         this.vote = vote;
         this.theme = theme;
@@ -20,7 +20,7 @@ public class Vote {
         return id;
     }
 
-    public int getVote() {
+    public double getVote() {
         return vote;
     }
 

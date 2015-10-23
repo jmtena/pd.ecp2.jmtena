@@ -1,5 +1,7 @@
 package pd.ecp2.miw.webPattern.presentation.frontController;
 
+import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.List;
 
 import pd.ecp2.miw.webPattern.dao.entities.Vote;
@@ -21,7 +23,10 @@ public class VotingView implements View{
 				System.out.print(vote.getTheme().getName());
 				System.out.print(", ");
 				System.out.print("average=");
-				System.out.print(vote.getVote());
+				NumberFormat numberFormat = NumberFormat.getInstance();
+				numberFormat.setMaximumFractionDigits(1);
+				numberFormat.setRoundingMode(RoundingMode.DOWN);
+				System.out.print(numberFormat.format(vote.getVote()));
 				System.out.print("]");
 				i++;
 				if (i<votations.size())

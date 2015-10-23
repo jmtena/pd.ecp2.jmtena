@@ -25,7 +25,6 @@ public class BusinessControllerVote {
 	
 	public void sendVotes(TransferVote transferVote){
 		Vote vote = transferVote.getVotes().get(transferVote.size()-1);
-		
 		DaoFactory.getFactory().getVoteDao().create(vote);
 	}
 }

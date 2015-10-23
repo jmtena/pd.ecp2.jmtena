@@ -3,7 +3,7 @@ package pd.ecp2.miw.webPattern.presentation.frontController;
 import java.util.List;
 
 public class TransferTheme {
-	List<String> themeNames;
+	private List<String> themeNames;
 	
 	public TransferTheme(List<String> themeNames){
 		this.themeNames = themeNames;

@@ -5,7 +5,7 @@ import java.util.List;
 import pd.ecp2.miw.webPattern.dao.entities.Vote;
 
 public class TransferVote {
-	List<Vote> votes;
+	private List<Vote> votes;
 	
 	public TransferVote(List<Vote> votes){
 		this.votes = votes;
